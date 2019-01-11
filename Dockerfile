@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Getty Images "https://github.com/gettyimages"
+MAINTAINER William Wang
 
 RUN apt-get update \
  && apt-get install -y locales \
