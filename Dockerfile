@@ -74,7 +74,6 @@ RUN mkdir -p /tmp/es-hadoop \
   && curl -o /tmp/es-hadoop/elasticsearch-hadoop-6.2.4.zip -sL --retry 3 \
   "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-6.2.4.zip" \
   && unzip -o /tmp/es-hadoop/elasticsearch-hadoop-6.2.4.zip -d /tmp/es-hadoop/  \
-  && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-hadoop-cascading-6.2.4.jar $SPARK_HOME/jars/ \
   && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-spark-20_2.11-6.2.4.jar $SPARK_HOME/jars/ \
   && rm -rf /tmp/es-hadoop
 
