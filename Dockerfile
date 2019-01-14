@@ -69,5 +69,15 @@ RUN curl -sL --retry 3 \
  && mv /usr/$SPARK_PACKAGE $SPARK_HOME \
  && chown -R root:root $SPARK_HOME
 
+# elasticsearch-hadoop
+RUN mkdir -p /tmp/es-hadoop \ 
+  && curl -o /tmp/es-hadoop/elasticsearch-hadoop-6.2.4.zip -sL --retry 3 \
+  "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-6.2.4.zip" \
+  && unzip -o /tmp/es-hadoop/elasticsearch-hadoop-6.2.4.zip -d /tmp/es-hadoop/  \
+  && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-hadoop-6.2.4.jar $SPARK_HOME/jars/ \
+  && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-storm-6.2.4.jar $SPARK_HOME/jars/ \
+  && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-spark-20_2.11-6.2.4.jar $SPARK_HOME/jars/ \
+  && rm -rf /tmp/es-hadoop
+
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
