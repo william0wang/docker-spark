@@ -77,5 +77,9 @@ RUN mkdir -p /tmp/es-hadoop \
   && mv /tmp/es-hadoop/elasticsearch-hadoop-6.2.4/dist/elasticsearch-spark-20_2.11-6.2.4.jar $SPARK_HOME/jars/ \
   && rm -rf /tmp/es-hadoop
 
+# timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+&& echo "Asia/Shanghai" > /etc/timezone
+
 WORKDIR $SPARK_HOME
 CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]
