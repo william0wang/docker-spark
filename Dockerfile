@@ -72,10 +72,10 @@ RUN curl -sL --retry 3 \
 
 # elasticsearch-hadoop
 RUN mkdir -p /tmp/es-hadoop \ 
-  && curl -o /tmp/es-hadoop/elasticsearch-hadoop-6.6.2.zip -sL --retry 3 \
-  "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-6.6.2.zip" \
-  && unzip -o /tmp/es-hadoop/elasticsearch-hadoop-6.6.2.zip -d /tmp/es-hadoop/  \
-  && mv /tmp/es-hadoop/elasticsearch-hadoop-6.6.2/dist/elasticsearch-spark-20_2.11-6.6.2.jar $SPARK_HOME/jars/ \
+  && curl -o /tmp/es-hadoop/elasticsearch-hadoop-7.1.1.zip -sL --retry 3 \
+  "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-7.1.1.zip" \
+  && unzip -o /tmp/es-hadoop/elasticsearch-hadoop-7.1.1.zip -d /tmp/es-hadoop/  \
+  && mv /tmp/es-hadoop/elasticsearch-hadoop-7.1.1/dist/elasticsearch-spark-20_2.11-7.1.1.jar $SPARK_HOME/jars/ \
   && rm -rf /tmp/es-hadoop
 
 # timezone
