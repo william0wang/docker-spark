@@ -36,7 +36,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # HADOOP
-ENV HADOOP_VERSION 3.0.0
+ENV HADOOP_VERSION 3.1.3
 ENV HADOOP_HOME /usr/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ENV PATH $PATH:$HADOOP_HOME/bin
@@ -48,7 +48,7 @@ RUN curl -sL --retry 3 \
  && chown -R root:root $HADOOP_HOME
 
 # SPARK
-ENV SPARK_VERSION 2.4.0
+ENV SPARK_VERSION 2.4.5
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-without-hadoop
 ENV SPARK_HOME /usr/spark-${SPARK_VERSION}
 ENV SPARK_DIST_CLASSPATH="$HADOOP_HOME/etc/hadoop/*:$HADOOP_HOME/share/hadoop/common/lib/*:$HADOOP_HOME/share/hadoop/common/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/hdfs/lib/*:$HADOOP_HOME/share/hadoop/hdfs/*:$HADOOP_HOME/share/hadoop/yarn/lib/*:$HADOOP_HOME/share/hadoop/yarn/*:$HADOOP_HOME/share/hadoop/mapreduce/lib/*:$HADOOP_HOME/share/hadoop/mapreduce/*:$HADOOP_HOME/share/hadoop/tools/lib/*"
@@ -68,6 +68,9 @@ RUN mkdir -p /tmp/es-hadoop \
   && unzip -o /tmp/es-hadoop/elasticsearch-hadoop-${ES_VERSION}.zip -d /tmp/es-hadoop/  \
   && mv /tmp/es-hadoop/elasticsearch-hadoop-${ES_VERSION}/dist/elasticsearch-spark-20_2.11-${ES_VERSION}.jar $SPARK_HOME/jars/ \
   && rm -rf /tmp/es-hadoop
+
+RUN curl -o $SPARK_HOME/jars/commons-httpclient-3.1.jar -sL --retry 3 \
+ https://repo1.maven.org/maven2/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar
 
 # timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
