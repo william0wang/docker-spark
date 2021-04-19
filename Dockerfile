@@ -61,7 +61,7 @@ RUN curl -sL --retry 3 \
  && chown -R root:root $SPARK_HOME
 
 # elasticsearch-hadoop
-ENV ES_VERSION 7.6.2
+ENV ES_VERSION 7.11.2
 RUN mkdir -p /tmp/es-hadoop \ 
   && curl -o /tmp/es-hadoop/elasticsearch-hadoop-${ES_VERSION}.zip -sL --retry 3 \
   "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-${ES_VERSION}.zip" \
